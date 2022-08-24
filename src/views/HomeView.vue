@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div id="homepage">
+    <!--<HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>-->
+    <AllDrinks v-for="item in data" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></AllDrinks>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+<script>
+import AllDrinks from '@/components/AllDrinks.vue'
+// import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import ApiService from '@/services/ApiService.js'
 
-export default defineComponent({
+const apiService = new ApiService()
+export default ({
   name: 'HomeView',
+  el: '#homepage',
   components: {
-    HelloWorld
+    AllDrinks
+  },
+  data () {
+    return {
+      data: [],
+      type: 'drink'
+    }
+  },
+  mounted () {
+    this.AllDrinks()
+  },
+  methods: {
+    async AllDrinks () {
+      const res = await apiService.getDrinksHomepage()
+      const drinks = await res.json()
+      this.data = drinks.drinks
+    }
   }
 })
 </script>
