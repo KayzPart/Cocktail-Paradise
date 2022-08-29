@@ -15,11 +15,17 @@ export default class ApiService {
   }
 
   // Requête slider (les dernier cocktail)
-  getSlider () {
-    return fetch('https://www.thecocktaildb.com/api/json/v2/1/latest.php')
-  }
+  // getSlider () {
+  //   return fetch('https://www.thecocktaildb.com/api/json/v2/1/latest.php')
+  // }
 
+  // Requête cocktails populaire (Page accueil)
   getDrinksHomepage () {
     return fetch('https://www.thecocktaildb.com/api/json/v2/1/popular.php')
+  }
+
+  // Requête derniers cocktails (Page accueil)
+  getDrinksLatest () {
+    return fetch('https://www.thecocktaildb.com/api/json/v2/1/latest.php')
   }
 }
