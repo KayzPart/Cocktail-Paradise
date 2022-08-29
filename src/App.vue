@@ -1,17 +1,19 @@
 <template>
   <HomePage />
   <router-view />
+  <FooterView />
 </template>
 
 <script>
 import HomePage from '@/components/HomePage.vue'
+import FooterView from '@/components/Footer.vue'
 import ApiService from '@/services/ApiService.js'
 
 const apiService = new ApiService()
 export default {
   name: 'App',
   components: {
-    HomePage
+    HomePage, FooterView
   }
 }
 </script>

@@ -9,6 +9,16 @@
     <div class="news_cocktails">
       <DrinksNews v-for="item in dataLatest.slice(0, 4)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></DrinksNews>
     </div>
+    <div class="choice_alcool">
+      <div class="notAlcool">
+        <h2>Nos cocktails sans alcool</h2>
+        <SectionNotAlcool v-for="item in dataNotAlcool.slice(2,3)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></SectionNotAlcool>
+      </div>
+      <div class="alcool">
+        <h2>Nos cocktails avec alcool</h2>
+        <SectionAlcool v-for="item in dataAlcool.slice(1,2)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></SectionAlcool>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +26,8 @@
 import SliderCocktails from '@/components/SliderCocktails.vue'
 import DrinksPopular from '@/components/DrinksPopular.vue'
 import DrinksNews from '@/components/DrinksNews.vue'
+import SectionNotAlcool from '@/components/SectionNotAlcool.vue'
+import SectionAlcool from '@/components/SectionAlcool.vue'
 import ApiService from '@/services/ApiService.js'
 
 const apiService = new ApiService()
@@ -24,18 +36,22 @@ export default {
   name: 'HomeView',
   el: '#homepage',
   components: {
-    SliderCocktails, DrinksPopular, DrinksNews
+    SliderCocktails, DrinksPopular, DrinksNews, SectionNotAlcool, SectionAlcool
   },
   data () {
     return {
       data: [],
       dataLatest: [],
+      dataAlcool: [],
+      dataNotAlcool: [],
       type: 'drink'
     }
   },
   mounted () {
     this.DrinksPopular()
     this.DrinksLatest()
+    this.AllDrinksAlcool()
+    this.AllDrinksNotAlcool()
   },
   methods: {
     async DrinksPopular () {
@@ -47,6 +63,16 @@ export default {
       const res = await apiService.getDrinksLatest()
       const drinksLatest = await res.json()
       this.dataLatest = drinksLatest.drinks
+    },
+    async AllDrinksAlcool () {
+      const res = await apiService.getDrinkAlcool()
+      const drinks = await res.json()
+      this.dataAlcool = drinks.drinks
+    },
+    async AllDrinksNotAlcool () {
+      const res = await apiService.getDrinkNotAlcool()
+      const drinks = await res.json()
+      this.dataNotAlcool = drinks.drinks
     }
   }
 }
@@ -55,6 +81,11 @@ export default {
 <style scoped>
 h1{
   font-size: 40px;
+  text-align: center;
+  margin: 20px 0;
+}
+h2{
+  font-size: 30px;
   text-align: center;
   margin: 20px 0;
 }
@@ -112,6 +143,25 @@ h1{
   width: 250px;
   height: 250px;
 }
+/* Choix cocktail Avec/Sans Alcool */
+.choice_alcool{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+.choice_alcool .notAlcool a, .choice_alcool .alcool a{
+  filter: grayscale(50%);
+  transition: .2s ease-in-out;
+}
+.choice_alcool .notAlcool a:hover, .choice_alcool .alcool a:hover{
+  filter: grayscale(0%);
+}
+.notAlcool, .alcool{
+  display: flex;
+  flex-direction: column;
+}
 
 /* Media query */
 @media screen and (max-width: 1020px){
@@ -130,6 +180,9 @@ h1{
   h1{
     font-size: 30px;
   }
+  h2{
+    font-size: 25px;
+  }
 }
 @media screen and (max-width: 800px){
   .news_cocktails{
@@ -139,6 +192,14 @@ h1{
 @media screen and (max-width:530px){
   .popular_cocktails > a:nth-child(1), .popular_cocktails > a:nth-child(2), .popular_cocktails > a:nth-child(3), .popular_cocktails > a:nth-child(4), .popular_cocktails > a:nth-child(5){
     height: 200px;
+  }
+}
+@media screen and (max-width: 480px){
+  h1{
+    font-size: 25px;
+  }
+  h2{
+    font-size: 20px;
   }
 }
 @media screen and (max-width: 420px){
