@@ -1,27 +1,17 @@
 <template>
-  <header class="row-limit-size">
-    <div id="background-header-filter">
-      <section class="little_header">
-        <figure>
-          <img src="./assets/cocktail_logo.png" alt="">
-        </figure>
-        <BurgerMenu></BurgerMenu>
-      </section>
-    </div>
-  </header>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <HomePage />
   <router-view />
 </template>
 
 <script>
-import BurgerMenu from '@/components/BurgerMenu.vue'
+import HomePage from '@/components/HomePage.vue'
+import ApiService from '@/services/ApiService.js'
+
+const apiService = new ApiService()
 export default {
   name: 'App',
   components: {
-    BurgerMenu
+    HomePage
   }
 }
 </script>
@@ -122,45 +112,52 @@ video {
   src: url(./assets/font/Magical\ Story.ttf) format('truetype');
 }
 
+/* Body background */
+body {
+  background-color: #fff3aa;
+}
+
 /* My classes */
 .row-limit-size {
   max-width: 2000px;
   width: 100%;
 }
 
-.show{
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.box_sizing {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.show {
   display: block;
 }
 
-/* Header for all pages */
-header {
-  height: 100vh;
-  background-image: url(./assets/backgroundHeader.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-#background-header-filter {
-  height: 100%;
-  background-color: #f1a2416e;
-}
-
-.little_header {
-  height: 200px;
-  background-color: #f1A141;
-  opacity: 0.85;
-}
-.little_header>figure{
-  width: 400px;
-  height: 200px;
-}
-.little_header>figure>img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 #app {
   font-family: "Magical Story";
+}
+
+/* Carousel */
+.carousel {
+  height: 300px;
+  width: 100%;
+  top: -150px;
+}
+
+.carousel__viewport {
+  height: 100%;
+}
+
+.carousel__prev {
+  left: 2%;
+}
+
+.carousel__next {
+  right: 2%;
 }
 </style>

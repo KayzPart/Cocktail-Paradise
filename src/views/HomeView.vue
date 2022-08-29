@@ -1,12 +1,16 @@
 <template>
+<SliderCocktails />
   <div id="homepage">
-    <!--<HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>-->
-    <AllDrinks v-for="item in data" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></AllDrinks>
+    <h1>Découvrez nos cocktails les plus populaires</h1>
+    <div class="popular_cocktails">
+      <DrinksPopular v-for="item in data.slice(0, 5)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></DrinksPopular>
+    </div>
   </div>
 </template>
 
 <script>
-import AllDrinks from '@/components/AllDrinks.vue'
+import DrinksPopular from '@/components/DrinksPopular.vue'
+import SliderCocktails from '@/components/SliderCocktails.vue'
 // import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 import ApiService from '@/services/ApiService.js'
 
@@ -15,7 +19,7 @@ export default ({
   name: 'HomeView',
   el: '#homepage',
   components: {
-    AllDrinks
+    DrinksPopular, SliderCocktails
   },
   data () {
     return {
@@ -24,10 +28,10 @@ export default ({
     }
   },
   mounted () {
-    this.AllDrinks()
+    this.DrinksPopular()
   },
   methods: {
-    async AllDrinks () {
+    async DrinksPopular () {
       const res = await apiService.getDrinksHomepage()
       const drinks = await res.json()
       this.data = drinks.drinks
@@ -35,3 +39,63 @@ export default ({
   }
 })
 </script>
+
+<style scoped>
+h1{
+  font-size: 40px;
+  text-align: center;
+}
+.popular_cocktails{
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.popular_cocktails a{
+  filter: grayscale(50%);
+  transition: .2s ease-in-out;
+}
+.popular_cocktails a:hover{
+  filter: grayscale(0%);
+}
+.popular_cocktails > a:nth-child(1){
+  width: 60%;
+  height: 400px;
+}
+
+.popular_cocktails > a:nth-child(2){
+  width: 40%;
+  height: 400px;
+}
+.popular_cocktails > a:nth-child(3){
+  width: 33.33%;
+  height: 333px;
+}
+.popular_cocktails > a:nth-child(4), .popular_cocktails > a:nth-child(5){
+  width: 33.33%;
+  height: 333px;
+}
+
+/* Media query */
+@media screen and (max-width:990px){
+  .popular_cocktails{
+    width: 90%;
+  }
+}
+@media screen and (max-width:990px){
+  h1{
+    font-size: 30px;
+  }
+}
+@media screen and (max-width:530px){
+  .popular_cocktails > a:nth-child(1), .popular_cocktails > a:nth-child(2), .popular_cocktails > a:nth-child(3), .popular_cocktails > a:nth-child(4), .popular_cocktails > a:nth-child(5){
+    height: 200px;
+  }
+}
+@media screen and (max-width: 420px){
+  .popular_cocktails{
+    width: 95%;
+  }
+}
+</style>

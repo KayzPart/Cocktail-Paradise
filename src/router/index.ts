@@ -1,11 +1,29 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import DrinksAlcool from '../views/DrinksAlcool.vue'
+import DrinksNotAlcool from '../views/DrinksNotAlcool.vue'
+import DrinkRead from '../components/DrinkRead.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/drinksAlcool',
+    name: 'drinksAlcool',
+    component: DrinksAlcool
+  },
+  {
+    path: '/drinksNotAlcool',
+    name: 'drinksNotAlcool',
+    component: DrinksNotAlcool
+  },
+  {
+    path: '/drink/:id',
+    name: 'drink',
+    component: DrinkRead
   },
   {
     path: '/about',

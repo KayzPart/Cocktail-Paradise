@@ -30,12 +30,13 @@ export default {
 /* Burger Menu */
 #content-burger {
   cursor: pointer;
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   padding: 5px;
   position: relative;
   bottom: 60%;
   left: 90%;
+  z-index: 8;
 }
 
 #burger-menu {
@@ -82,5 +83,38 @@ export default {
 #burger-menu.open::after {
   transform: rotate(-45deg);
   top: 0;
+}
+@media screen and (max-width: 860px){
+  #content-burger{
+    width: 50px;
+    height: 50px;
+  }
+  #burger-menu, #burger-menu::before, #burger-menu::after{
+    height: 5px;
+  }
+}
+@media screen and (max-width: 700px){
+  #content-burger{
+    left: 87.5%;
+  }
+}
+@media screen and (max-width: 550px){
+  #content-burger{
+    width: 30px;
+    height: 30px;
+    left: 90%;
+    top: -120px;
+  }
+  #burger-menu::before{
+    top: -10px;
+  }
+  #burger-menu::after{
+    top: 10px;
+  }
+}
+@media screen and (max-width: 550px){
+  #content-burger{
+    left: 85%;
+  }
 }
 </style>
