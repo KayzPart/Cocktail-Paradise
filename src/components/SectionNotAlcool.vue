@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'SectionNotAlcool',
-  props: ['id', 'title', 'poster']
+  props: ['id', 'title', 'poster', 'ingredient']
 }
 </script>
 <style scoped>

@@ -2,7 +2,9 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DrinksAlcool from '../views/DrinksAlcool.vue'
 import DrinksNotAlcool from '../views/DrinksNotAlcool.vue'
+import IngredientsView from '../views/IngredientsView.vue'
 import DrinkRead from '../components/DrinkRead.vue'
+import IngredientRead from '../components/IngredientRead.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,9 +23,19 @@ const routes: Array<RouteRecordRaw> = [
     component: DrinksNotAlcool
   },
   {
+    path: '/IngredientsView',
+    name: 'IngredientsView',
+    component: IngredientsView
+  },
+  {
     path: '/drink/:id',
     name: 'drink',
     component: DrinkRead
+  },
+  {
+    path: '/ingredient/:id',
+    name: 'ingredient',
+    component: IngredientRead
   },
   {
     path: '/about',

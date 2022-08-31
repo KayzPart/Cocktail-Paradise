@@ -15,9 +15,9 @@ export default class ApiService {
   }
 
   // Requête slider (les dernier cocktail)
-  // getSlider () {
-  //   return fetch('https://www.thecocktaildb.com/api/json/v2/1/latest.php')
-  // }
+  getSlider () {
+    return fetch('https://www.thecocktaildb.com/api/json/v2/1/filter.php?c=Ordinary_Drink')
+  }
 
   // Requête cocktails populaire (Page accueil)
   getDrinksHomepage () {
@@ -27,5 +27,15 @@ export default class ApiService {
   // Requête derniers cocktails (Page accueil)
   getDrinksLatest () {
     return fetch('https://www.thecocktaildb.com/api/json/v2/1/latest.php')
+  }
+
+  // Requête liste ingrédients
+  getIngredientsList () {
+    return fetch('https://www.thecocktaildb.com/api/json/v2/1/list.php?i=list')
+  }
+
+  // Requête Ingrédient par id
+  getReadIngredient (id) {
+    return fetch(`https://www.thecocktaildb.com/api/json/v2/1/lookup.php?iid=${id}`)
   }
 }

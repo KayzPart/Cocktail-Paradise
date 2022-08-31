@@ -3,20 +3,20 @@
   <div id="homepage">
     <h1>Découvrez nos cocktails les plus populaires</h1>
     <div class="popular_cocktails">
-      <DrinksPopular v-for="item in data.slice(0, 5)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></DrinksPopular>
+      <DrinksPopular v-for="item in data.slice(0, 5)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb" :ingredient="item.strIngredient"></DrinksPopular>
     </div>
     <h1>Découvrez nos nouveautés</h1>
     <div class="news_cocktails">
-      <DrinksNews v-for="item in dataLatest.slice(0, 4)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></DrinksNews>
+      <DrinksNews v-for="item in dataLatest.slice(0, 4)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb" :ingredient="item.strIngredient" ></DrinksNews>
     </div>
     <div class="choice_alcool">
       <div class="notAlcool">
         <h2>Nos cocktails sans alcool</h2>
-        <SectionNotAlcool v-for="item in dataNotAlcool.slice(2,3)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></SectionNotAlcool>
+        <SectionNotAlcool v-for="item in dataNotAlcool.slice(2,3)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb" :ingredient="item.strIngredient"></SectionNotAlcool>
       </div>
       <div class="alcool">
         <h2>Nos cocktails avec alcool</h2>
-        <SectionAlcool v-for="item in dataAlcool.slice(1,2)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></SectionAlcool>
+        <SectionAlcool v-for="item in dataAlcool.slice(1,2)" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb" :ingredient="item.strIngredient"></SectionAlcool>
       </div>
     </div>
   </div>

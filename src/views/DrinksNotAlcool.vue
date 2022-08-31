@@ -1,6 +1,6 @@
 <template>
   <section class="box_sizing">
-    <AllDrinks v-for="item in data" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></AllDrinks>
+    <AllDrinks v-for="item in data" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb" :ingredient="item.strIngredient"></AllDrinks>
   </section>
 </template>
 

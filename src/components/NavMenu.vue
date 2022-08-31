@@ -32,12 +32,12 @@
             </a>
           </li>
           <li>
-            <a href="">
+            <router-link to="/IngredientsView">
               <figure>
                 <img src="../assets/ingredients.png" alt="">
               </figure>
               Ingrédients
-            </a>
+            </router-link>
           </li>
           <li>
             <a href="">

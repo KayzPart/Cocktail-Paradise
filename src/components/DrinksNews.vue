@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'DrinksNews',
-  props: ['id', 'title', 'poster']
+  props: ['id', 'title', 'poster', 'ingredient']
 }
 </script>
 <style scoped>

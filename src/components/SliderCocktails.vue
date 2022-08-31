@@ -1,14 +1,19 @@
 <template>
   <div class="body-cocktail">
-    <Carousel :settings='settings' :breakpoints='breakpoints' :autoplay="3000">
-      <Slide v-for='slide in 5' :key='slide'>
-        <div class='carousel__item'>{{ slide }}
-          <img :src="data.strDrinkThumb" :alt="data.strDrink">
+    <div class="slide_caraousel_data" v-for="item in data" :key="item.idDrink" :id="item.idDrink" :title="item.strDrink" :poster="item.strDrinkThumb"></div>
+    <Carousel :items-to-show="2.5" :wrap-around="true" :autoplay="3000">
+      <Slide v-for='slide in data' :key='slide'>
+        <div class='carousel__item'>
+          <img :src="slide.strDrinkThumb" :alt="slide.strDrink">
         </div>
       </Slide>
 
       <template #addons>
-        <Pagination />
+        <Pagination>
+          <div class='carousel__item'>
+            <img :src="slide.strDrinkThumb" :alt="slide.strDrink">
+          </div>
+        </Pagination>
         <Navigation />
       </template>
     </Carousel>
@@ -21,7 +26,7 @@ import { Carousel, Navigation, Slide, Pagination } from 'vue3-carousel'
 import ApiService from '@/services/ApiService.js'
 const apiService = new ApiService()
 export default {
-  name: 'SliderCocktails',
+  name: 'SliderCock"tails',
   components: {
     Carousel, Navigation, Slide, Pagination
   },
@@ -55,16 +60,24 @@ export default {
     async SliderDrink () {
       const res = await apiService.getSlider()
       const drinks = await res.json()
-      this.data = drinks.drinks[0]
+      this.data = drinks.drinks.slice(0, 5)
     }
   }
 }
 </script>
 <style>
-.carousel__next {
-  right: 2%;
+.carousel {
+  width: 50%;
+  margin: 0 auto;
 }
-.carousel__prev {
-  left: 2%;
+.carousel__track, .carousel__slide{
+  height: 100%;
+}
+.carousel__item, .carousel__item > img{
+  width: 100%;
+  height: 100%;
+}
+.carousel__item > img{
+  object-fit: contain;
 }
 </style>

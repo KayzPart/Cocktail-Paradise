@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'DrinksPopular',
-  props: ['id', 'title', 'poster']
+  props: ['id', 'title', 'poster', 'ingredient']
 }
 </script>
 <style scoped>
