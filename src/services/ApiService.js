@@ -38,4 +38,9 @@ export default class ApiService {
   getReadIngredient (id) {
     return fetch(`https://www.thecocktaildb.com/api/json/v2/1/lookup.php?iid=${id}`)
   }
+
+  // Requête recherche par ingredient
+  getSearchByIngredient (search) {
+    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${search}`)
+  }
 }
