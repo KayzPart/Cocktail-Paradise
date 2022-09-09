@@ -9,12 +9,30 @@ import OrdinaryCocktail from '../views/OrdinaryDrink.vue'
 import CocktailsView from '../views/CocktailsView.vue'
 import DrinkRead from '../components/DrinkRead.vue'
 import IngredientRead from '../components/IngredientRead.vue'
+import CreateUsers from '../components/CreateUsers.vue'
+import ListUsers from '../components/ListUsers.vue'
+import EditUser from '../components/EditUser.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/createUser',
+    name: 'createUser',
+    component: CreateUsers
+  },
+  {
+    path: '/view',
+    name: 'view',
+    component: ListUsers
+  },
+  {
+    path: '/edit/:id',
+    name: 'edit',
+    component: EditUser
   },
   {
     path: '/drinksAlcool',

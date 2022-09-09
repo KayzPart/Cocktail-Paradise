@@ -69,6 +69,14 @@
               Verre à Champagne
             </router-link>
           </li>
+          <li class="create_and_view_user">
+            <router-link to="/createUser">
+              Créer un utilisateur
+            </router-link>
+            <router-link to="/view">
+              Voir les utilisateurs
+            </router-link>
+          </li>
         </ul>
       </nav>
     </div>

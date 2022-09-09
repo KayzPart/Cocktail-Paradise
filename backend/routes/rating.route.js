@@ -5,7 +5,7 @@ let RatingModel = require('../models/Rating')
 
 // Création de la première route
 // View all ratings (req = requête, res = response)
-ratingRoute.route('/').get((req, res) => {
+ratingRoute.route('/rating').get((req, res) => {
     RatingModel.find((err, data) => {
         if(err){
             console.log(err)

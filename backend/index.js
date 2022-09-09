@@ -17,7 +17,7 @@ let express = require('express'),
   }
 )
 
-const ratingApi = require ('../backend/routes/rating.route')
+const userApi = require ('../backend/routes/user.route')
 const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(cors())
 
-app.use('/rating', ratingApi)
+app.use('/api', userApi)
 
 const port = process.env.PORT || 4000
 const server = app.listen(port, () => {

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { ModuleResolutionKind } = require('typescript')
 const {Schema} = mongoose
 let RatingSchema = new Schema({
     idDrink: {
