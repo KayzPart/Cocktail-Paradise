@@ -3,6 +3,10 @@ import HomeView from '../views/HomeView.vue'
 import DrinksAlcool from '../views/DrinksAlcool.vue'
 import DrinksNotAlcool from '../views/DrinksNotAlcool.vue'
 import IngredientsView from '../views/IngredientsView.vue'
+import ChampagneFlute from '../views/ChampagneFlute.vue'
+import CocktailGlass from '../views/CocktailGlass.vue'
+import OrdinaryCocktail from '../views/OrdinaryDrink.vue'
+import CocktailsView from '../views/CocktailsView.vue'
 import DrinkRead from '../components/DrinkRead.vue'
 import IngredientRead from '../components/IngredientRead.vue'
 
@@ -26,6 +30,26 @@ const routes: Array<RouteRecordRaw> = [
     path: '/IngredientsView',
     name: 'IngredientsView',
     component: IngredientsView
+  },
+  {
+    path: '/ChampagneFlute',
+    name: 'ChampagneFlute',
+    component: ChampagneFlute
+  },
+  {
+    path: '/CocktailGlass',
+    name: 'CocktailGlass',
+    component: CocktailGlass
+  },
+  {
+    path: '/OrdinaryCocktail',
+    name: 'OrdinaryCocktail',
+    component: OrdinaryCocktail
+  },
+  {
+    path: '/CocktailsView',
+    name: 'CocktailsView',
+    component: CocktailsView
   },
   {
     path: '/drink/:id',

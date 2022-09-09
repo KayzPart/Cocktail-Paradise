@@ -1,15 +1,17 @@
 <template>
-  <section class="boxs_ingredients">
-    <div class="ingredient">
-      <figure>
-        <img :src="'https://www.thecocktaildb.com/images/ingredients/'+ title + '-Medium.png'" :alt="title">
-      </figure>
-      <div class="title_ingredients">
-        <h3>{{ title }}</h3>
-      {{id}}
+  <!--<router-link :to="{name: 'ingredient', params: {id: id}}">-->
+    <section class="boxs_ingredients">
+      <div class="ingredient">
+        <figure>
+          <img :src="'https://www.thecocktaildb.com/images/ingredients/'+ title + '-Medium.png'" :alt="title">
+        </figure>
+        <div class="title_ingredients">
+          <h3>{{ title }}</h3>
+        {{id}}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <!---</router-link>-->
 </template>
 
 <script>

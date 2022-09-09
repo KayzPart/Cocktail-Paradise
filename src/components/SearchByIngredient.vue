@@ -3,15 +3,13 @@
     <input class="input_search" @input="search = $event.target.value" placeholder="Faites une recherche par ingrédients"/>
     <div class="ingredients" v-if="dataIngredient != null">
       <p>
-        Nous avons trouvez votere ingrédient ! 😁
+        Nous avons trouvez votre ingrédient ! 😁
       </p>
-      <router-link :to="{name: 'ingredient'}">
         <AllIngredients v-for="item in dataIngredient" :key="item.idIngredient" :id="item.idIngredient"
         :title="item.strIngredient"></AllIngredients>
-      </router-link>
     </div>
     <div v-else class="search_not_result">
-      <p>Aucun ingrédietns trouver ! 🤔</p>
+      <p>Aucun ingrédient trouver ! 🙄</p>
     </div>
   </div>
 </template>
@@ -49,7 +47,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .search_section{
   width: 450px;
   margin: 0 auto;

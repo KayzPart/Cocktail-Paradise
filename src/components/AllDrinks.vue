@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'drink', params: {id: id} }">
+  <router-link :to="{ name: 'drink', params: {id: id} }" class="drink-read">
     <section class="boxs_drinks">
       <div class="boxs_content">
         <figure>
@@ -20,8 +20,43 @@ export default {
   props: ['id', 'title', 'poster', 'ingredient']
 }
 </script>
-<style scoped>
+<style>
 /* Section */
+/* .like-container input{
+  display: none;
+}
+.like-container input:checked + label svg {
+  color: rgb(251, 38, 38);
+  animation: heart 1.3s forwards ease;
+}
+@keyframes heart {
+  0% {
+    filter: hue-rotate(0deg);
+    transform: scale(1);
+  }
+  50% {
+    filter: hue-rotate(-270deg);
+    transform: scale(1.3);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+    transform: scale(1);
+  }
+}
+svg{
+  transition: 0.2s;
+  cursor: pointer;
+}
+svg:hover{
+  animation: scaler 0.8s infinite linear;
+} */
+.drink-read img{
+  filter: grayscale(50%);
+  transition: .2s ease-in-out;
+}
+.drink-read img:hover{
+  filter: grayscale(0);
+}
 .boxs_drinks {
   width: 300px;
   height: 400px;

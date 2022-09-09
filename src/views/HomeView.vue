@@ -79,11 +79,6 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  font-size: 40px;
-  text-align: center;
-  margin: 20px 0;
-}
 h2{
   font-size: 30px;
   text-align: center;

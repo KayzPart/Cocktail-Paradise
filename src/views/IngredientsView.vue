@@ -1,4 +1,7 @@
 <template>
+  <h1>
+    Parcourez les ingrédients, ou recherchez le vôtre 😇
+  </h1>
   <SearchByIngredient></SearchByIngredient>
   <section class="box_sizing">
     <AllIngredients v-for="item in data" :key="item.idIngredient" :id="item.idIngredient" :title="item.strIngredient1"></AllIngredients>
@@ -31,7 +34,6 @@ export default {
       const res = await apiService.getIngredientsList()
       const ingredient = await res.json()
       this.data = ingredient.drinks
-      console.log(ingredient.drinks)
     }
   }
 }

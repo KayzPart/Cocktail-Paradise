@@ -43,7 +43,6 @@ export default {
   display: inline-block;
   position: relative;
   top: 10px;
-  left: 10px;
   width: 100%;
   height: 10px;
   border-radius: 10px;
@@ -65,10 +64,12 @@ export default {
 
 #burger-menu::before {
   top: -20px;
+  left: 0;
 }
 
 #burger-menu::after {
   top: 20px;
+  left: 0;
 }
 
 #burger-menu.open{

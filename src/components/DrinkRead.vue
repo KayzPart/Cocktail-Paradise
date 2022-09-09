@@ -1,23 +1,32 @@
 <template>
   <h1>{{ data.strDrink }}</h1>
   <article class="section_readCocktail">
-    <figure>
-      <img :src="data.strDrinkThumb" :alt="data.strDrink">
-    </figure>
-    <section class="content">
+    <div class="lookup">
+      <figure>
+        <img :src="data.strDrinkThumb" :alt="data.strDrink">
+      </figure>
       <div class="instructions">
-        <h2>Son histoire</h2>
+        <h2>Préparation</h2>
         <p>
-          {{ data.strInstructionsIT }}
+          {{ data.strInstructions }}
         </p>
       </div>
+    </div>
+    <section class="content">
       <h2>Ingrédients</h2>
-      <div class="ingredients">
-        <p v-for="item in dataIngredient" :key="item" class="ingredient_item">
-          <img :src="'https://www.thecocktaildb.com/images/ingredients/'+ item + '-Medium.png'" :alt="item">
-          {{ item }}
-        </p>
-      </div>
+      <ul>
+        <li v-for="(item, index) in dataIngredient" :key="index" v-on:click="ingredient">
+          <div class="title_ingredient">
+            <figure>
+              <img :src="'https://www.thecocktaildb.com/images/ingredients/'+ item + '-Medium.png'" :alt="item">
+            </figure>
+          </div>
+          <div class="display">
+            <span>{{ dataMeasure[index] }}</span>
+            <h4>{{ item }}</h4>
+          </div>
+        </li>
+      </ul>
     </section>
   </article>
 </template>
@@ -32,7 +41,9 @@ export default {
     return {
       data: null,
       dataIngredient: [],
+      dataMeasure: [],
       id: this.$route.params.id
+      // Test carrousel
     }
   },
   created () {
@@ -44,37 +55,28 @@ export default {
       const drinks = await res.json()
       this.data = drinks.drinks[0]
       const baseIng = 'strIngredient'
+      const baseMeas = 'strMeasure'
       let nbr = 1
       let currentIng = baseIng + nbr
-      while (drinks.drinks[0][currentIng] !== null) {
+      let currentMeas = baseMeas + nbr
+      while (drinks.drinks[0][currentIng] !== null & drinks.drinks[0][currentMeas] !== null) {
         nbr++
         this.dataIngredient.push(drinks.drinks[0][currentIng])
         currentIng = baseIng + nbr
-        console.log(currentIng)
-        // console.log(drinks.drinks[0][currentIng])
+        this.dataMeasure.push(drinks.drinks[0][currentMeas])
+        currentMeas = baseMeas + nbr
       }
     }
   }
 }
 </script>
 <style scoped>
-.section_readCocktail {
-  background-color: #F7EDB4;
-  width: 80%;
-  padding: 50px;
-}
-.section_readCocktail, .section_readCocktail figure{
-  margin: 0 auto;
-}
-.section_readCocktail figure{
-  margin-bottom: 50px;
-}
-.content {
-  background-color: #86C3B9;
-  padding: 20px 0;
-}
+  ul, li{
+    text-decoration: none;
+  }
 p{
   font-size: 18px;
+  text-align: center;
 }
 h1{
   font-size: 40px;
@@ -87,83 +89,128 @@ h2{
   margin: 20px 0;
   color: #ffff;
 }
-figure,
-img {
-  width: 400px;
-  height: 400px;
+.section_readCocktail {
+  background-color: #F7EDB4;
+  width: 90%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
 }
-
-img {
-  object-fit: cover;
+.section_readCocktail, .section_readCocktail figure{
+  margin: 0 auto;
+}
+.lookup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.479);
+  padding: 20px;
+  height: 100%;
+  width: 50%;
+  margin-right: 20px;
+}
+.lookup figure, .lookup img {
+  width: 90%;
+  height: 400px;
+  border-radius: 10px;
 }
 .instructions{
   width: 80%;
   margin: 0 auto;
 }
-.ingredients{
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  text-align: center;
-}
-.ingredients p{
-  margin: 20px;
+
+.content {
+  background-color: #86C3B9;
   padding: 20px;
+  width: 50%;
+  height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.479);
 }
-.ingredient_item{
-  width: 200px;
-  height: 200px;
+.content ul{
+  margin: 0 auto;
+  width: 100%;
 }
-.ingredient_item img{
+.content ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content ul li .title_ingredient figure{
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+}
+.content ul li .title_ingredient figure img, .lookup figure img{
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
-@media screen and (max-width: 850px){
-  .ingredient_item{
-    width: 150px;
-    height: 150px;
-  }
-  figure, img{
-    width: 350px;
-    height: 350px;
-  }
+
+.display{
+  display: flex;
+  margin-top: 10px;
 }
-@media screen and (max-width: 650px){
-  figure, img{
-    width: 300px;
-    height: 300px;
-  }
-  .ingredient_item{
-    width: 100px;
-    height: 100px;
-  }
+.display h4{
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 2px;
 }
-@media screen and (max-width: 520px){
+.display span{
+  font-weight: 600;
+  margin: 0 10px;
+}
+@media screen and (max-width: 1120px){
+  .content ul li .title_ingredient figure{
+  width: 70px;
+  height: 70px;
+  }
+  .display{
+    font-size: 14px;
+  }
   p{
     font-size: 16px;
   }
-  h1{
-    font-size: 35px;
+}
+@media screen and (max-width: 980px){
+  .content ul li .title_ingredient figure{
+  width: 60px;
+  height: 60px;
   }
-  h2{
-    font-size: 25px;
+  .lookup figure{
+    height: 300px;
   }
-  figure, img{
-    width: 250px;
-    height: 250px;
-  }
-  .ingredients p{
-    margin: 0;
-  }
+}
+@media screen and (max-width: 850px){
   .section_readCocktail{
-    width: 100%;
-    padding: 20px;
+    flex-direction: column;
   }
-  .section_readCocktail figure{
-     margin-bottom: 20px;
+  .lookup{
+    margin-right: 0;
+  }
+  .lookup, .content{
+    width: 100%;
+  }
+  .content ul{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .content ul li{
+    flex-direction: column;
+    margin: 10px;
+  }
+  .display{
+    flex-direction: column;
+    align-items: center;
+  }
+  .display span{
+    margin-bottom: 10px;
+  }
+  .content ul li .title_ingredient figure{
+    width: 80px;
+    height: 80px;
   }
 }
 </style>

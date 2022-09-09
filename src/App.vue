@@ -130,6 +130,11 @@ a {
   cursor: pointer;
 }
 
+h1{
+  font-size: 40px;
+  text-align: center;
+  margin: 20px 0;
+}
 .box_sizing {
   display: flex;
   justify-content: space-around;

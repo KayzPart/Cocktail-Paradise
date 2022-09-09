@@ -3,7 +3,6 @@
     <div class="overlay" v-on:click="toggleModale"></div>
 
     <div class="modale card">
-      <!--<div v-on:click="toggleModale" class="btn-modale">X</div>-->
       <nav id="main-nav">
         Rechercher par
         <ul>
@@ -24,13 +23,28 @@
             </router-link>
           </li>
           <li>
-            <a href="">
+            <div v-on:click="toggleSubMenu" :class="['sub-menu', { 'open': reveleSM }]">
               <figure>
                 <img src="../assets/categorie.png" alt="">
               </figure>
+              <figure>
+                <img src="../assets/down-arrow.png" alt="">
+              </figure>
               Catégories
-            </a>
+            </div>
           </li>
+          <ul class="sub-menu_item" v-if="reveleSM">
+            <li>
+              <router-link to="/OrdinaryCocktail">
+                Boisson ordinaire
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/CocktailsView">
+                Cocktail
+              </router-link>
+            </li>
+          </ul>
           <li>
             <router-link to="/IngredientsView">
               <figure>
@@ -40,20 +54,20 @@
             </router-link>
           </li>
           <li>
-            <a href="">
+            <router-link to="/CocktailGlass">
               <figure>
                 <img src="../assets/verre-deau.png" alt="">
               </figure>
-              Verres
-            </a>
+              Verre à Cocktail
+            </router-link>
           </li>
           <li>
-            <a href="">
+            <router-link to="/ChampagneFlute">
               <figure>
                 <img src="../assets/biere.png" alt="">
               </figure>
-              Champagne
-            </a>
+              Verre à Champagne
+            </router-link>
           </li>
         </ul>
       </nav>
@@ -67,7 +81,17 @@ import ApiService from '@/services/ApiService.js'
 export default {
   name: 'ModaleMenu',
   components: AllDrinks,
-  props: ['revele', 'toggleModale']
+  props: ['revele', 'toggleModale'],
+  data () {
+    return {
+      reveleSM: false
+    }
+  },
+  methods: {
+    toggleSubMenu: function () {
+      this.reveleSM = !this.reveleSM
+    }
+  }
 }
 </script>
 
@@ -77,7 +101,8 @@ export default {
   top: 0;
   bottom: 0;
   /* left: 0; */
-  right: 20%;z-index: 8;
+  right: 20%;
+  z-index: 8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,62 +134,83 @@ export default {
   transition: color .15s;
   font-size: 40px;
 } */
-#main-nav, #main-nav a{
+#main-nav,
+#main-nav a {
   color: #ffff;
   font-size: 30px;
 }
+
 #main-nav li {
   padding: 10px 0;
 }
-#main-nav a {
+
+#main-nav a,
+#main-nav div {
   display: flex;
   align-items: center;
   text-decoration: none;
 }
+
 #main-nav ul li {
   list-style: none;
 }
-#main-nav figure{
+
+#main-nav figure {
   margin-right: 15px;
   width: 50px;
   height: 50px;
 }
-#main-nav img{
+
+#main-nav img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-@media screen and (max-width: 860px){
-  .modale{
+#main-nav .sub-menu_item {
+  font-size: 50px;
+  /* display: none !important; */
+}
+
+@media screen and (max-width: 860px) {
+  .modale {
     padding: 20px;
     width: 400px;
   }
-  #main-nav, #main-nav a{
-  font-size: 20px;
+
+  #main-nav,
+  #main-nav a {
+    font-size: 20px;
   }
-  #main-nav figure{
+
+  #main-nav figure {
     width: 35px;
     height: 35px;
   }
 }
-@media screen and (max-width: 700px){
-  #main-nav, #main-nav a{
-  font-size: 15px;
+
+@media screen and (max-width: 700px) {
+
+  #main-nav,
+  #main-nav a {
+    font-size: 15px;
   }
-  #main-nav figure{
+
+  #main-nav figure {
     width: 25px;
     height: 25px;
   }
 }
-@media screen and (max-width: 650px){
-  .modale{
+
+@media screen and (max-width: 650px) {
+  .modale {
     right: 2px;
     width: 300px;
   }
 }
-@media screen and (max-width: 550px){
-  .modale{
+
+@media screen and (max-width: 550px) {
+  .modale {
     width: 200px;
     padding: 10px;
   }
